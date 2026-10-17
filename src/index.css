@@ -64,3 +64,23 @@ body {
 .modal-content {
   animation: slideUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* Mobile responsiveness enhancements */
+@media (max-width: 640px) {
+  .modal-overlay {
+    padding: 6px !important;
+  }
+  .modal-content {
+    max-height: 96vh !important;
+    border-radius: 16px !important;
+    width: 100% !important;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

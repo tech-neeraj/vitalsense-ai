@@ -8,9 +8,6 @@ import {
   Clock, 
   Filter, 
   ShieldAlert,
-  ArrowRight,
-  Wifi,
-  Sparkles
 } from 'lucide-react';
 
 export default function TriageDashboard({ 
@@ -29,55 +26,58 @@ export default function TriageDashboard({
   });
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       
       {/* High-Impact Hero Banner */}
-      <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5">
+      <div className="bg-white border border-slate-200 rounded-xl p-4 sm:p-5 shadow-sm">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 sm:gap-5">
           <div className="space-y-1.5 max-w-2xl">
             <div className="flex items-center gap-2">
-              <span className="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-sky-100 text-sky-800 rounded">
+              <span className="px-2 py-0.5 text-[9px] sm:text-[10px] font-bold uppercase tracking-wider bg-sky-100 text-sky-800 rounded">
                 Daffodil Innovation Core
               </span>
-              <span className="text-xs text-slate-500 font-medium">Remote Patient Monitoring (RPM) Copilot</span>
+              <span className="text-[11px] sm:text-xs text-slate-500 font-medium">Remote Patient Monitoring (RPM) Copilot</span>
             </div>
-            <h1 className="text-xl font-bold text-slate-900 tracking-tight">
+            <h1 className="text-lg sm:text-xl font-bold text-slate-900 tracking-tight leading-snug">
               Stop drowning in false medical alarms.
             </h1>
-            <p className="text-sm text-slate-600 leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
               Normally, nurses get hundreds of beep alerts every day for tiny changes in blood pressure or weight. 
               <strong> VitalSense calls or texts the patient to check on them first</strong>, removes false alarms, and writes the doctor’s note automatically.
             </p>
           </div>
 
-          <div className="flex items-center gap-3 w-full lg:w-auto shrink-0">
-            <div className="flex-1 lg:flex-initial px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-center">
-              <span className="block text-[10px] uppercase font-bold text-slate-400">Daily Readings</span>
-              <span className="text-base font-bold text-slate-800 font-mono">1,420</span>
+          {/* Metric Stats Cards */}
+          <div className="grid grid-cols-3 gap-2 w-full lg:w-auto shrink-0">
+            <div className="p-2 sm:px-4 sm:py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-center">
+              <span className="block text-[9px] sm:text-[10px] uppercase font-bold text-slate-400">Daily Readings</span>
+              <span className="text-sm sm:text-base font-bold text-slate-800 font-mono">1,420</span>
             </div>
-            <div className="flex-1 lg:flex-initial px-4 py-2.5 bg-rose-50 border border-rose-200 rounded-xl text-center">
-              <span className="block text-[10px] uppercase font-bold text-rose-500">Raw Alarms</span>
-              <span className="text-base font-bold text-rose-700 font-mono">312 (Overload)</span>
+            <div className="p-2 sm:px-4 sm:py-2.5 bg-rose-50 border border-rose-200 rounded-xl text-center">
+              <span className="block text-[9px] sm:text-[10px] uppercase font-bold text-rose-500">Raw Alarms</span>
+              <span className="text-sm sm:text-base font-bold text-rose-700 font-mono">312</span>
+              <span className="hidden sm:inline text-[10px] text-rose-500 font-semibold"> (Overload)</span>
             </div>
-            <div className="flex-1 lg:flex-initial px-4 py-2.5 bg-emerald-50 border border-emerald-200 rounded-xl text-center">
-              <span className="block text-[10px] uppercase font-bold text-emerald-600">VitalSense Filtered</span>
-              <span className="text-base font-bold text-emerald-700 font-mono">98 Actionable</span>
+            <div className="p-2 sm:px-4 sm:py-2.5 bg-emerald-50 border border-emerald-200 rounded-xl text-center">
+              <span className="block text-[9px] sm:text-[10px] uppercase font-bold text-emerald-600">Filtered</span>
+              <span className="text-sm sm:text-base font-bold text-emerald-700 font-mono">98</span>
+              <span className="hidden sm:inline text-[10px] text-emerald-600 font-semibold"> Actionable</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Cohort Filters */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3">
-        <div className="flex items-center gap-2 text-xs font-semibold text-slate-600">
-          <Filter className="w-3.5 h-3.5" />
+      {/* Cohort Filters - Swipeable on mobile */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 border-b border-slate-200 pb-3">
+        <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-600">
+          <Filter className="w-3.5 h-3.5 text-slate-400" />
           <span>Filter Patient List:</span>
         </div>
 
-        <div className="flex flex-wrap items-center gap-1.5">
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 w-full sm:w-auto no-scrollbar whitespace-nowrap">
           <button
             onClick={() => setActiveFilter('ALL')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors shrink-0 ${
               activeFilter === 'ALL'
                 ? 'bg-slate-900 text-white shadow-sm'
                 : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
@@ -88,7 +88,7 @@ export default function TriageDashboard({
 
           <button
             onClick={() => setActiveFilter('URGENT')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors flex items-center gap-1.5 ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors flex items-center gap-1.5 shrink-0 ${
               activeFilter === 'URGENT'
                 ? 'bg-rose-600 text-white shadow-sm'
                 : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
@@ -100,7 +100,7 @@ export default function TriageDashboard({
 
           <button
             onClick={() => setActiveFilter('MEDS')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors flex items-center gap-1.5 ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors flex items-center gap-1.5 shrink-0 ${
               activeFilter === 'MEDS'
                 ? 'bg-amber-600 text-white shadow-sm'
                 : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
@@ -112,7 +112,7 @@ export default function TriageDashboard({
 
           <button
             onClick={() => setActiveFilter('CLEARED')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors flex items-center gap-1.5 ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors flex items-center gap-1.5 shrink-0 ${
               activeFilter === 'CLEARED'
                 ? 'bg-emerald-600 text-white shadow-sm'
                 : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
@@ -125,7 +125,7 @@ export default function TriageDashboard({
       </div>
 
       {/* Patient Cards List */}
-      <div className="space-y-4">
+      <div className="space-y-3.5 sm:space-y-4">
         {filteredPatients.map((patient) => {
           const isUrgent = patient.aiSummary.level === 'urgent' || patient.aiSummary.level === 'critical';
           const isWarning = patient.aiSummary.level === 'warning';
@@ -139,21 +139,23 @@ export default function TriageDashboard({
           return (
             <div 
               key={patient.id}
-              className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm hover:border-slate-300 transition-all space-y-4"
+              className="bg-white border border-slate-200 rounded-xl p-3.5 sm:p-5 shadow-sm hover:border-slate-300 transition-all space-y-3 sm:space-y-4"
             >
               {/* Top Row: Demographics + Vitals + Urgency Badge */}
-              <div className="flex flex-col lg:flex-row items-start justify-between gap-4">
+              <div className="flex flex-col lg:flex-row items-start justify-between gap-3 sm:gap-4">
                 
                 {/* Left: Patient info */}
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <h2 className="text-base font-bold text-slate-900">
-                      {patient.name}
-                    </h2>
-                    <span className="text-xs text-slate-500">
-                      ({patient.age} yrs, {patient.gender})
-                    </span>
-                    <span className="text-[11px] font-mono text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">
+                <div className="space-y-0.5 sm:space-y-1 w-full lg:w-auto">
+                  <div className="flex items-center justify-between lg:justify-start gap-2 flex-wrap">
+                    <div className="flex items-center gap-2">
+                      <h2 className="text-sm sm:text-base font-bold text-slate-900">
+                        {patient.name}
+                      </h2>
+                      <span className="text-xs text-slate-500">
+                        ({patient.age} yrs, {patient.gender})
+                      </span>
+                    </div>
+                    <span className="text-[10px] sm:text-[11px] font-mono text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">
                       {patient.mrn}
                     </span>
                   </div>
@@ -165,65 +167,65 @@ export default function TriageDashboard({
                   </p>
                 </div>
 
-                {/* Center: Vitals Displays */}
-                <div className="flex flex-wrap items-center gap-2.5">
+                {/* Center: Vitals Displays - Responsive Grid on Mobile */}
+                <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2 w-full lg:w-auto">
                   {patient.currentReading.bp && (
-                    <div className="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-center min-w-[110px]">
-                      <span className="text-[10px] text-slate-500 block uppercase font-bold">Blood Pressure</span>
-                      <span className={`text-sm font-bold font-mono ${(patient.currentReading.bpStatus || '').includes('High') ? 'text-rose-600' : 'text-slate-800'}`}>
+                    <div className="px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-center min-w-[95px] sm:min-w-[110px]">
+                      <span className="text-[9px] sm:text-[10px] text-slate-500 block uppercase font-bold">Blood Pressure</span>
+                      <span className={`text-xs sm:text-sm font-bold font-mono ${(patient.currentReading.bpStatus || '').includes('High') ? 'text-rose-600' : 'text-slate-800'}`}>
                         {patient.currentReading.bp}
                       </span>
                     </div>
                   )}
 
                   {patient.currentReading.weight && (
-                    <div className="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-center min-w-[110px]">
-                      <span className="text-[10px] text-slate-500 block uppercase font-bold">Weight</span>
-                      <span className="text-sm font-bold font-mono text-rose-600">
+                    <div className="px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-center min-w-[95px] sm:min-w-[110px]">
+                      <span className="text-[9px] sm:text-[10px] text-slate-500 block uppercase font-bold">Weight</span>
+                      <span className="text-xs sm:text-sm font-bold font-mono text-rose-600">
                         {patient.currentReading.weight}
                       </span>
-                      <span className="block text-[10px] text-rose-500 font-semibold">
+                      <span className="block text-[9px] sm:text-[10px] text-rose-500 font-semibold">
                         {patient.currentReading.weightChange}
                       </span>
                     </div>
                   )}
 
                   {patient.currentReading.glucose && (
-                    <div className="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-center min-w-[110px]">
-                      <span className="text-[10px] text-slate-500 block uppercase font-bold">Blood Sugar</span>
-                      <span className="text-sm font-bold font-mono text-amber-600">
+                    <div className="px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-center min-w-[95px] sm:min-w-[110px]">
+                      <span className="text-[9px] sm:text-[10px] text-slate-500 block uppercase font-bold">Blood Sugar</span>
+                      <span className="text-xs sm:text-sm font-bold font-mono text-amber-600">
                         {patient.currentReading.glucose}
                       </span>
                     </div>
                   )}
 
                   {patient.currentReading.spo2 && (
-                    <div className="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-center min-w-[110px]">
-                      <span className="text-[10px] text-slate-500 block uppercase font-bold">SpO2 (Oxygen)</span>
-                      <span className="text-sm font-bold font-mono text-rose-600">
+                    <div className="px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-center min-w-[95px] sm:min-w-[110px]">
+                      <span className="text-[9px] sm:text-[10px] text-slate-500 block uppercase font-bold">SpO2 (Oxygen)</span>
+                      <span className="text-xs sm:text-sm font-bold font-mono text-rose-600">
                         {patient.currentReading.spo2}
                       </span>
                     </div>
                   )}
 
                   {/* Medicare CPT 99457 Billing Box */}
-                  <div className="px-3 py-1.5 bg-sky-50 border border-sky-100 rounded-lg text-center min-w-[110px]">
-                    <span className="text-[10px] text-sky-700 block uppercase font-bold flex items-center justify-center gap-1">
+                  <div className="px-2.5 py-1.5 bg-sky-50 border border-sky-100 rounded-lg text-center col-span-2 sm:col-span-1 min-w-[95px] sm:min-w-[110px]">
+                    <span className="text-[9px] sm:text-[10px] text-sky-700 block uppercase font-bold flex items-center justify-center gap-1">
                       <Clock className="w-3 h-3 text-sky-600" />
                       {patient.billing.code}
                     </span>
                     <span className="text-xs font-bold text-sky-900 font-mono">
                       {patient.billing.timeLogged}
                     </span>
-                    <span className="block text-[10px] text-emerald-600 font-bold">
+                    <span className="block text-[9px] sm:text-[10px] text-emerald-600 font-bold">
                       ✓ {patient.billing.amount}
                     </span>
                   </div>
                 </div>
 
                 {/* Right: Urgency Status Tag */}
-                <div className="shrink-0">
-                  <span className={`px-2.5 py-1 text-xs font-bold rounded-lg border ${badgeClass}`}>
+                <div className="shrink-0 w-full lg:w-auto flex justify-start lg:justify-end">
+                  <span className={`px-2.5 py-1 text-xs font-bold rounded-lg border w-full sm:w-auto text-center ${badgeClass}`}>
                     {patient.aiSummary.badge}
                   </span>
                 </div>
@@ -231,7 +233,7 @@ export default function TriageDashboard({
               </div>
 
               {/* Middle Row: "What Happened" & "What VitalSense Did" */}
-              <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-xs text-slate-700 space-y-1.5 leading-relaxed">
+              <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 sm:p-3.5 text-xs text-slate-700 space-y-1.5 leading-relaxed">
                 <div>
                   <strong className="text-slate-900 font-bold">What happened: </strong>
                   <span>{patient.aiSummary.whatHappened}</span>
@@ -242,20 +244,20 @@ export default function TriageDashboard({
                 </div>
               </div>
 
-              {/* Bottom Action Row: Clear, High-Impact Action Buttons */}
-              <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
+              {/* Bottom Action Row: Responsive Action Buttons */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 pt-1">
                 <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
                   <span>⏱️ <strong>{patient.aiSummary.timeSaved}</strong></span>
                   <span>•</span>
-                  <span>📱 Channel: Automated Voice Call & SMS</span>
+                  <span>📱 Automated Voice Call & SMS</span>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-2">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
                   
                   {/* Primary Call / SMS Button */}
                   <button
                     onClick={() => onOpenMicroTriage(patient)}
-                    className="px-3.5 py-1.5 text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors flex items-center gap-1.5 shadow-sm"
+                    className="w-full sm:w-auto px-3.5 py-2 sm:py-1.5 text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors flex items-center justify-center gap-1.5 shadow-sm"
                   >
                     <PhoneCall className="w-3.5 h-3.5" />
                     <span>AI Voice Call & SMS</span>
@@ -264,7 +266,7 @@ export default function TriageDashboard({
                   {/* Doctor Note with 1-Click Orders */}
                   <button
                     onClick={() => onOpenSoapNote(patient)}
-                    className="px-3.5 py-1.5 text-xs font-bold bg-sky-600 hover:bg-sky-700 text-white rounded-lg transition-colors flex items-center gap-1.5 shadow-sm"
+                    className="w-full sm:w-auto px-3.5 py-2 sm:py-1.5 text-xs font-bold bg-sky-600 hover:bg-sky-700 text-white rounded-lg transition-colors flex items-center justify-center gap-1.5 shadow-sm"
                   >
                     <FileText className="w-3.5 h-3.5" />
                     <span>Doctor Note & Orders</span>
@@ -273,7 +275,7 @@ export default function TriageDashboard({
                   {/* EHR FHIR sync */}
                   <button
                     onClick={() => onOpenFhirBridge(patient)}
-                    className="px-3 py-1.5 text-xs font-semibold bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 rounded-lg transition-colors flex items-center gap-1.5"
+                    className="w-full sm:w-auto px-3 py-2 sm:py-1.5 text-xs font-semibold bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 rounded-lg transition-colors flex items-center justify-center gap-1.5"
                   >
                     <Share2 className="w-3.5 h-3.5 text-slate-500" />
                     <span>Send to Hospital (FHIR)</span>

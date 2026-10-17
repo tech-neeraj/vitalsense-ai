@@ -106,10 +106,10 @@ Status: Verified by ${patient.nurse} for ${patient.doctor}`;
             )}
           </div>
 
-          <div className="flex flex-wrap gap-2 pt-0.5">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-1.5 sm:gap-2 pt-0.5">
             <button
               onClick={() => setOrderedAction("Adjust Torsemide to 40mg daily x 3 days")}
-              className={`px-2.5 py-1 text-xs rounded-lg border transition-all ${
+              className={`w-full sm:w-auto text-left sm:text-center px-2.5 py-1.5 sm:py-1 text-xs rounded-lg border transition-all ${
                 orderedAction?.includes("Torsemide")
                   ? 'bg-sky-700 text-white border-sky-800 font-semibold shadow-sm'
                   : 'bg-white text-slate-700 hover:bg-sky-100 border-slate-300'
@@ -120,7 +120,7 @@ Status: Verified by ${patient.nurse} for ${patient.doctor}`;
 
             <button
               onClick={() => setOrderedAction("Scheduled Video Follow-up with Dr. Patel tomorrow 10am")}
-              className={`px-2.5 py-1 text-xs rounded-lg border transition-all ${
+              className={`w-full sm:w-auto text-left sm:text-center px-2.5 py-1.5 sm:py-1 text-xs rounded-lg border transition-all ${
                 orderedAction?.includes("Video")
                   ? 'bg-sky-700 text-white border-sky-800 font-semibold shadow-sm'
                   : 'bg-white text-slate-700 hover:bg-sky-100 border-slate-300'
@@ -131,7 +131,7 @@ Status: Verified by ${patient.nurse} for ${patient.doctor}`;
 
             <button
               onClick={() => setOrderedAction("Order Potassium & Renal BMP Blood Panel")}
-              className={`px-2.5 py-1 text-xs rounded-lg border transition-all ${
+              className={`w-full sm:w-auto text-left sm:text-center px-2.5 py-1.5 sm:py-1 text-xs rounded-lg border transition-all ${
                 orderedAction?.includes("BMP")
                   ? 'bg-sky-700 text-white border-sky-800 font-semibold shadow-sm'
                   : 'bg-white text-slate-700 hover:bg-sky-100 border-slate-300'
@@ -143,7 +143,7 @@ Status: Verified by ${patient.nurse} for ${patient.doctor}`;
         </div>
 
         {/* Note Body */}
-        <div className="p-5 overflow-y-auto space-y-3 flex-1 text-xs text-slate-700 leading-relaxed bg-white">
+        <div className="p-3.5 sm:p-5 overflow-y-auto space-y-2.5 sm:space-y-3 flex-1 text-xs text-slate-700 leading-relaxed bg-white">
           
           <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg space-y-1">
             <h4 className="font-bold text-slate-900 uppercase text-[10px] tracking-wider text-sky-800">
@@ -207,11 +207,11 @@ Status: Verified by ${patient.nurse} for ${patient.doctor}`;
         </div>
 
         {/* Footer */}
-        <div className="p-3.5 border-t border-slate-200 bg-slate-50 flex items-center justify-between">
-          <div className="flex items-center gap-2">
+        <div className="p-3 sm:p-3.5 border-t border-slate-200 bg-slate-50 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
+          <div className="flex items-center gap-2 w-full sm:w-auto">
             <button
               onClick={handleCopy}
-              className="px-3 py-1.5 bg-white hover:bg-slate-100 text-slate-700 text-xs font-medium border border-slate-300 rounded-lg flex items-center gap-1.5 shadow-sm transition-colors"
+              className="flex-1 sm:flex-initial justify-center px-3 py-1.5 bg-white hover:bg-slate-100 text-slate-700 text-xs font-medium border border-slate-300 rounded-lg flex items-center gap-1.5 shadow-sm transition-colors"
             >
               {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5 text-slate-500" />}
               <span>{copied ? 'Copied' : 'Copy'}</span>
@@ -219,7 +219,7 @@ Status: Verified by ${patient.nurse} for ${patient.doctor}`;
 
             <button
               onClick={handleDownload}
-              className="px-3 py-1.5 bg-white hover:bg-slate-100 text-slate-700 text-xs font-medium border border-slate-300 rounded-lg flex items-center gap-1.5 shadow-sm transition-colors"
+              className="flex-1 sm:flex-initial justify-center px-3 py-1.5 bg-white hover:bg-slate-100 text-slate-700 text-xs font-medium border border-slate-300 rounded-lg flex items-center gap-1.5 shadow-sm transition-colors"
             >
               <Download className="w-3.5 h-3.5 text-slate-500" />
               <span>Download</span>
